@@ -43,7 +43,7 @@ public class Principal {
     
                 System.out.println(diccionario.traducir(lineasDatos2));
     
-                System.out.println("\n¿Desea utilizar otro árbol? (1. Si, 2. No)");
+                System.out.println("¿Desea utilizar otro árbol? (1. Si, 2. No)");
                 int respuesta = teclado.nextInt();
                 teclado.nextLine();
     

@@ -108,38 +108,42 @@ public class Diccionario{
      */
     public String traducir(ArrayList<String> lineasDatos2){
         ArrayList<String> unaLinea2 = new ArrayList<String>();
-        String resultado = "\n";
+        String resultado = "";
 
         for (String fila : lineasDatos2) {
+            resultado = resultado + "\nORIGINAL:\n" + fila;
             String [] lineaSeparada = fila.split(" ");
             unaLinea2 = new ArrayList<String>();
             for (String caracter : lineaSeparada) {
                 unaLinea2.add(caracter.trim());
             }
-        }
 
-        String last2 = "";
-        String last = unaLinea2.remove(unaLinea2.size() - 1);
-        if (last.endsWith(".")){
-            last2 = last.substring(0, last.length() - 1);
-            unaLinea2.add(last2);        
-        }
-        else{
-            unaLinea2.add(last);
-        }
-        
-        for (String pal : unaLinea2){
-            String pal2 = pal.toLowerCase();
-
-            if (palabras.contains(pal2)){
-                Palabra pa = arbol.get(new Palabra(pal2, ""));
-                resultado = resultado + pa.getSpanish() + " ";
-
+            String last2 = "";
+            String last = unaLinea2.remove(unaLinea2.size() - 1);
+            if (last.endsWith(".")){
+                last2 = last.substring(0, last.length() - 1);
+                unaLinea2.add(last2);        
             }
             else{
-                resultado = resultado + "*" + pal2 + "* ";
+                unaLinea2.add(last);
             }
+            
+            resultado = resultado + "\nTRADUCCION:\n";
+            for (String pal : unaLinea2){
+                String pal2 = pal.toLowerCase();
+    
+                if (palabras.contains(pal2)){
+                    Palabra pa = arbol.get(new Palabra(pal2, ""));
+                    resultado = resultado + pa.getSpanish() + " ";
+    
+                }
+                else{
+                    resultado = resultado + "*" + pal2 + "* ";
+                }
+            }
+            resultado = resultado + "\n";
         }
+
         return resultado;
 
     }
